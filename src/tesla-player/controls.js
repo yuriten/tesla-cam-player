@@ -23,7 +23,7 @@ const FilterControls = (props) => {
               return (
                 <button
                   className={classNames('btn btn-sm normal-case btn-outline', {
-                    'btn-primary': typeFilter === i.code,
+                    'bg-gray-600': typeFilter === i.code,
                   })}
                   onClick={() => setTypeFilter(i.code)}
                   key={i.code}
@@ -48,7 +48,7 @@ const FilterControls = (props) => {
                   changeVideo(i)
                 }}
                 className={classNames('btn btn-sm btn-outline mr-2 mb-1', {
-                  'btn-primary': i.day === timePoint.day,
+                  'bg-gray-600': i.day === timePoint.day,
                 })}
               >
                 {i.day === timePoint.day ? i.day : i.shortDay}

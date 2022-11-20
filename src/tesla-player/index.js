@@ -11,7 +11,7 @@ import { dictToArray, pipeFilter, pipeStyle, pipeSort } from './model'
 import { getTimePoints, genVideoClass } from './model'
 
 // 句柄持久化参考这个链接：https://web.dev/file-system-access/#storing-file-handles-or-directory-handles-in-indexeddb
-const TeslaPlayer = (props) => {
+const TeslaPlayer = () => {
   const [cubes, setCubes] = useState([]) // 时间点（被渲染成小方块）
   const [playing, togglePlaying] = useToggle(false) // 正在播放
   const [timePoint, setTimePoint] = useState({}) // 当前选中的时间点
@@ -175,7 +175,12 @@ const TeslaPlayer = (props) => {
           载入 TeslaCam 文件夹
         </button>
       </div>
-      <div className={'flex flex-col relative mx-auto pb-20 w-[700px]'}>
+
+      <div
+        className={classNames('flex flex-col relative mx-auto pb-20 w-[700px]', {
+          hidden: cubes.length === 0,
+        })}
+      >
         <div className='flex flex-wrap relative'>
           <div className='bg-slate-800 h-52 w-1/3 rounded-tl-xl flex flex-col pt-2'>
             <Console timePoint={timePoint} currentTime={currentTime} />
@@ -250,7 +255,6 @@ const TeslaPlayer = (props) => {
         <div
           className={classNames(
             'controls-area mt-2 border w-full pb-4 pt-4 flex flex-col relativ rounded-xl',
-            { hidden: cubes.length === 0 },
           )}
         >
           <ProgressBar
